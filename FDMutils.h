@@ -10,8 +10,8 @@ std::unique_ptr<Matrix> createTridiagonalMatrix(
 	const std::unique_ptr<Vector>& a,
 	const std::unique_ptr<Vector>& b,
 	const std::unique_ptr<Vector>& c);
-std::unique_ptr<Matrix> createMatrix(int cap1, int cap2);
-std::unique_ptr<Vector> createVector(int capacity);
+std::unique_ptr<Matrix> createMatrix(int length1, int length2);
+std::unique_ptr<Vector> createVector(int length);
 void printMatrix(const Matrix& mat);
 void printMatrix(const std::unique_ptr<Matrix>& mat);
 void printVector(const Vector& vec);
