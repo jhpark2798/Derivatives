@@ -12,15 +12,15 @@ A와 d의 사이즈가 일치하는지 확인을 안하고 있고
 class ThomasAlgorithm {
 public:
 	ThomasAlgorithm();
-	ThomasAlgorithm(const std::unique_ptr<Matrix>& A, const std::unique_ptr<Vector>& d);
+	ThomasAlgorithm(const std::shared_ptr<Matrix>& A, const std::shared_ptr<Vector>& d);
 	~ThomasAlgorithm();
 
 	int eqtSize();
-	std::unique_ptr<Vector> solve();
+	std::shared_ptr<Vector> solve();
 
 private:
-	std::unique_ptr<Matrix> A;
-	std::unique_ptr<Vector> d;
+	std::shared_ptr<Matrix> A;
+	std::shared_ptr<Vector> d;
 
 	// 아직 미구현 된 안전장치 함수들
 	bool isSquare();

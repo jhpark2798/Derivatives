@@ -6,15 +6,15 @@
 typedef std::vector<std::vector<double>> Matrix;
 typedef std::vector<double> Vector;
 
-std::unique_ptr<Matrix> createTridiagonalMatrix(
-	const std::unique_ptr<Vector>& a,
-	const std::unique_ptr<Vector>& b,
-	const std::unique_ptr<Vector>& c);
-std::unique_ptr<Matrix> createMatrix(int length1, int length2);
-std::unique_ptr<Vector> createVector(int length);
+std::shared_ptr<Matrix> createTridiagonalMatrix(
+	const std::shared_ptr<Vector>& a,
+	const std::shared_ptr<Vector>& b,
+	const std::shared_ptr<Vector>& c);
+std::shared_ptr<Matrix> createMatrix(int length1, int length2);
+std::shared_ptr<Vector> createVector(int length);
 void printMatrix(const Matrix& mat);
-void printMatrix(const std::unique_ptr<Matrix>& mat);
+void printMatrix(const std::shared_ptr<Matrix>& mat);
 void printVector(const Vector& vec);
-void printVector(const std::unique_ptr<Vector>& vec);
+void printVector(const std::shared_ptr<Vector>& vec);
 
 void testFDMutils();

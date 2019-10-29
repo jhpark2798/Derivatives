@@ -19,45 +19,36 @@ void testThomasAlgorithm()
 	{
 		1, 2, 3, 4, 5,
 	};
-	std::unique_ptr<Matrix> A = std::make_unique<Matrix>(mat);
-	std::unique_ptr<Vector> d = std::make_unique<Vector>(vec);
+	std::shared_ptr<Matrix> A = std::make_unique<Matrix>(mat);
+	std::shared_ptr<Vector> d = std::make_unique<Vector>(vec);
 	cout << "Matrix A is " << endl;
 	printMatrix(A);
 	cout << "Vector d is " << endl;
 	printVector(d);
 
 	ThomasAlgorithm ta(A, d);
-	std::unique_ptr<Vector> x = ta.solve();
+	std::shared_ptr<Vector> x = ta.solve();
 	cout << "solution vector x is " << endl;
 	printVector(x);
 }
 
-ThomasAlgorithm::ThomasAlgorithm()
-{
-}
+ThomasAlgorithm::ThomasAlgorithm() {}
 
-ThomasAlgorithm::ThomasAlgorithm(const std::unique_ptr<Matrix>& A, const std::unique_ptr<Vector>& d)
-	: A(std::make_unique<Matrix>(*A)), d(std::make_unique<Vector>(*d))
-//	: A(std::make_unique<Matrix>(*(std::move(A)))), d(std::make_unique<Vector>(*(std::move(d))))
-{
-}
+ThomasAlgorithm::ThomasAlgorithm(const std::shared_ptr<Matrix>& A, const std::shared_ptr<Vector>& d)
+	: A(A), d(d) {}
 
-ThomasAlgorithm::~ThomasAlgorithm()
-{
-}
+ThomasAlgorithm::~ThomasAlgorithm() {}
 
-int ThomasAlgorithm::eqtSize()
-{
+int ThomasAlgorithm::eqtSize() {
 	return A->size();
 }
 
 // Core Function
-std::unique_ptr<Vector> ThomasAlgorithm::solve()
-{
+std::shared_ptr<Vector> ThomasAlgorithm::solve() {
 	int size = eqtSize();
-	std::unique_ptr<Vector> a_ = createVector(size);	// a'
-	std::unique_ptr<Vector> d_ = createVector(size);	// d'
-	std::unique_ptr<Vector> x = createVector(size);		// x (solution)
+	std::shared_ptr<Vector> a_ = createVector(size);	// a'
+	std::shared_ptr<Vector> d_ = createVector(size);	// d'
+	std::shared_ptr<Vector> x = createVector(size);		// x (solution)
 
 	// calculate a' and d'
 	(*a_)[0] = (*A)[0][0];
